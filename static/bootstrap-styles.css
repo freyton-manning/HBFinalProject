@@ -6,6 +6,10 @@
 	border-radius: 0px;
 }
 
+.btn-primary {
+	background-color: #5fc9ce;
+	border-color: #5fc9ce;
+}
 #ubermelon-logo, #ubermelon-logo:hover, .navbar-dark .navbar-brand {
 	color: #151515;
 }

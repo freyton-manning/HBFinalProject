@@ -38,7 +38,7 @@ def about():
 @app.route("/goals")
 def show_goals():
     """Return Page with User Goals"""
-    
+
     return render_template("goals.html")
 
 @app.route("/register", methods=["GET"])
@@ -102,13 +102,6 @@ def process_login():
         return redirect ("/register")        
 
 
-# @app.route("/melons")
-# def list_melons():
-#     """Return page showing all the melons ubermelon has to offer"""
-
-#     melon_list = melons.get_all()
-#     return render_template("all_melons.html",
-#                            melon_list=melon_list)
 
 
 if __name__ == "__main__":
