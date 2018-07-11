@@ -5,7 +5,7 @@ viewing mood visualization data. Also lets a user select goals from a menu.
 
 """
 
-from flask import Flask, render_template, redirect, flash, session
+from flask import Flask, render_template, redirect, flash, session, request
 import jinja2
 
 from model import User, User_Moods, Moods, UserGoals, Goals, Hashtag, Activities, UserDataHashtags, connect_to_db, db
@@ -43,12 +43,14 @@ def register_process():
     email = request.form.get("email")
     password = request.form.get("password")
     username = request.form.get("username")
-    reminders_on = request.form.get("reminders_on")
+    reminders_on = request.form.get("reminders_on") == 'on'
+
+    print(reminders_on)
 
     query = User.query.filter(User.email == email).first()
     
     if query is None:
-        new_user = User(email=user_email, password=password)
+        new_user = User(email=email, password=password, username=username, reminders_on=reminders_on)
         db.session.add(new_user)
         db.session.commit()
     return redirect("/")

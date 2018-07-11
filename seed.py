@@ -8,9 +8,8 @@ from server import app
 
 
 def load_users():
-    """Hard-code load users from u.user into database."""
+    """Hard-code load users from into database."""
 
-    #print("Users")
     UserGoals.query.delete()
     User.query.delete()
     Goals.query.delete()
