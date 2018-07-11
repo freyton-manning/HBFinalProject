@@ -30,6 +30,16 @@ def homepage():
 
     return render_template("homepage.html")
 
+@app.route("/about")
+def about():
+    """Return About Informational Page"""
+    return render_template("about.html")
+
+@app.route("/goals")
+def show_goals():
+    """Return Page with User Goals"""
+    
+    return render_template("goals.html")
 
 @app.route("/register", methods=["GET"])
 def register_form():

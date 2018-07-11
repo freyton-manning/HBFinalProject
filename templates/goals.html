@@ -26,18 +26,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="#">About</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="#">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">My Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/goals">Goals</a>
+          <a class="nav-link" href="#">Goals</a>
         </li>
       <li class="nav-item">
           <a class="nav-link" href="#">My Profile</a>
@@ -52,46 +52,51 @@
     <!-- Begin centered main text -->
       <div class="row align-items-center">
         <section class="col-6 mx-auto" id="splash">
-          <img src="https://www.uyplifestyle.com/wp-content/uploads/2016/11/Mindfulness-pier.jpg" class="img-fluid center-block" alt="Image of melon" id="hero">
+          
           <br>
           <br>
-          <p>Life is a journey, and you shouldn't have to go through it alone. LiveWell is an app that aids in mood tracking, goal setting, and suggestions to help you live the best life YOU can imagine.<p>
+         <p>Fitness</p>
+         <p>Social Activities</p>
+         <p>Volunteering</p>
         </section>
-    </div>
+      </div>
+
+<form class="form-signin" action="/goals" method="POST">
+
+        <h2> Please Select Your Goals</h2>
+
+        <div class="form-group">
+            <label>Fitness</label>
+            <input type="checkbox"
+                   name="fitness">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Social Activities</label>
+            <input type="checkbox"
+                   name="social_activities">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Volunteering</label>
+            <input type="checkbox"
+                   name="volunteering">
+        <br>
+        <button type="submit">Submit
+        </button>
+
+    </form>
+
+
+</div>
+
+
+
+
+
+
+    
     <!-- End of centered main text -->
-
-    <!-- Row for features columns -->     
-    <div class="row" id="featurerow">
-
-      <section class="col feature">
-        <i class="fas fa-trophy"></i>
-        <b>Data-Driven</b>
-        <p>
-          Understanding and self-awareness are crucial <br>
-          Access all of your mood data, gorgeously displayed, at any time
-        </p>
-      </section>
-
-      <section class="col feature">
-        <i class="fas fa-globe"></i>
-        <b>Flexible Approach</b>
-        <p>
-          No one is the same - that's what makes you special. LiveWell offers a flexible approach, from simple tracking to proactive suggestions and reminders. It's all up to you. 
-        </p>
-      </section>
-
-      <section class="col feature">
-        <i class="fas fa-certificate"></i>
-        <b>Industry Standard</b>
-        <p>
-          Incorporating well-recognized psychological & therapeutic strategies, LiveWell integrates easily into your life and lets you focus on the most important thing - feeling and being your best self. 
-        </p>
-      </section>
-
-    </div>
-    <!-- End of three feature columns -->
-
-    <!-- Row for table -->
     
 
 
