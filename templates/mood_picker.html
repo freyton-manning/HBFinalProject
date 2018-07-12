@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form class="form-signin" action="/track-mood" method="POST">
+
+        <h2> How are You Feeling?</h2>
+
+
+<input type="button" onclick="alert('Mood Logged!')" value="Never Felt Better!"><br>
+<input type="button" onclick="alert('Mood Logged!')" value="Pretty Good!"><br>
+<input type="button" onclick="alert('Mood Logged!')" value="Good"><br>
+<input type="button" onclick="alert('Mood Logged!')" value="Okay"><br>
+<input type="button" onclick="alert('Mood Logged!')" value="Meh.."><br>
+<input type="button" onclick="alert('Mood Logged!')" value="Not Great"><br>
+<input type="button" onclick="alert('Mood Logged!')" value="Pretty Bad"><br>
+<input type="button" onclick="alert('Mood Logged!')" value="Couldn't feel worse"><br>
+        
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log Mood! 
+        </button>
+
+    </form>
+
+{% endblock %}

@@ -41,6 +41,13 @@ def show_goals():
 
     return render_template("goals.html")
 
+@app.route("/track-mood", methods=["GET"])
+def show_mood_picker():
+    """Return Page that shows mood picker for user to select"""
+
+    return render_template("mood_picker.html") 
+
+
 @app.route("/register", methods=["GET"])
 def register_form():
     """Return page showing the registration form
