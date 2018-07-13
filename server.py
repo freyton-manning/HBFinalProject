@@ -35,6 +35,12 @@ def about():
     """Return About Informational Page"""
     return render_template("about.html")
 
+@app.route("/mood-chart")
+def chart():
+    labels = ["January","February","March","April","May","June","July","August"]
+    values = [10,9,8,7,6,4,7,8]
+    return render_template('standin_mood_chart.html', values=values, labels=labels)
+
 @app.route("/goals")
 def show_goals():
     """Return Page with User Goals"""
