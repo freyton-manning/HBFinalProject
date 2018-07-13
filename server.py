@@ -35,6 +35,7 @@ def about():
     """Return About Informational Page"""
     return render_template("about.html")
 
+#added mood chart route
 @app.route("/mood-chart")
 def chart():
     labels = ["January","February","March","April","May","June","July","August"]
