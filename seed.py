@@ -40,7 +40,39 @@ def load_users():
     db.session.add(goal_3)
     db.session.commit()
     
- 
+ #add mood data to db
+
+ # def load_goals():
+    """Load mood data into db"""
+def load_moods(): 
+
+    mood_10 = Moods(mood_word = "Really Great", mood_num=10)
+    mood_9 = Moods(mood_word = "Great", mood_num=9)
+    mood_8 = Moods(mood_word = "Very Good", mood_num=8)
+    mood_7 = Moods(mood_word = "Good", mood_num=7)
+    mood_6 = Moods(mood_word = "Okay", mood_num=6)
+    mood_5 = Moods(mood_word = "So-So", mood_num=5)
+    mood_4 = Moods(mood_word = "Meh", mood_num=4)
+    mood_3 = Moods(mood_word = "Bad", mood_num=3)
+    mood_2 = Moods(mood_word = "Very Bad", mood_num=2)
+    mood_1 = Moods(mood_word = "Couldn't Be Worse", mood_num=1)
+
+    db.session.add(mood_10)
+    db.session.add(mood_9)
+    db.session.add(mood_8)
+    db.session.add(mood_7)
+    db.session.add(mood_6)
+    db.session.add(mood_5)
+    db.session.add(mood_4)
+    db.session.add(mood_3)
+    db.session.add(mood_2)
+    db.session.add(mood_1)
+    db.session.commit()
+
+
+#TODO: 
+# def load_user_moods(): 
+
 
 if __name__ == "__main__":
     connect_to_db(app)
@@ -48,6 +80,7 @@ if __name__ == "__main__":
 
     
     load_users()
+    load_moods()
     
 
     

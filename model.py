@@ -40,6 +40,8 @@ class User_Moods(db.Model):
 
     record_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    # realized this wasn't added so updated - need a way to link mood id to the user
+    # otherwise what are they actually logging? 
     mood_id = db.Column(db.Integer, db.ForeignKey('moods.mood_id'), nullable=False)
     datetime = db.Column(db.DateTime, nullable=False)
     comments = db.Column(db.String(1000), nullable = True)
@@ -54,6 +56,7 @@ class Moods(db.Model):
 
     mood_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     mood_word = db.Column(db.String(25), nullable=False)
+    mood_num = db.Column(db.Integer, nullable= False)
     #Not quite sure what to do with Mood type rn, so keeping it nullable 
     #Might do initial DB seed without it 
     mood_type = db.Column(db.String(50), nullable = True)
