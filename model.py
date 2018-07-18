@@ -40,6 +40,7 @@ class User_Moods(db.Model):
 
     record_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    mood_id = db.Column(db.Integer, db.ForeignKey('moods.mood_id'), nullable=False)
     datetime = db.Column(db.DateTime, nullable=False)
     comments = db.Column(db.String(1000), nullable = True)
     hours_slept = db.Column(db.Float, nullable=True)
