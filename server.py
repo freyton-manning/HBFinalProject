@@ -42,6 +42,12 @@ def chart():
     values = [10,9,8,7,6,4,7,8]
     return render_template('standin_mood_chart.html', values=values, labels=labels)
 
+#mood chart update
+#request.args.get
+#todo: add view mood chart by zoom in feature
+
+#todo: add view mood chart by 
+
 @app.route("/goals")
 def show_goals():
     """Return Page with User Goals"""
@@ -53,6 +59,8 @@ def show_mood_picker():
     """Return Page that shows mood picker for user to select"""
 
     return render_template("mood_picker.html") 
+#TODO: ADD 'ADD TRACKED MOOD' ROUTE
+
 
 
 @app.route("/register", methods=["GET"])
