@@ -7,15 +7,22 @@
         <h2> How are You Feeling?</h2>
 
 
-<input type="button" onclick="alert('Mood Logged!')" value="Never Felt Better!"><br>
-<input type="button" onclick="alert('Mood Logged!')" value="Pretty Good!"><br>
-<input type="button" onclick="alert('Mood Logged!')" value="Good"><br>
-<input type="button" onclick="alert('Mood Logged!')" value="Okay"><br>
-<input type="button" onclick="alert('Mood Logged!')" value="Meh.."><br>
-<input type="button" onclick="alert('Mood Logged!')" value="Not Great"><br>
-<input type="button" onclick="alert('Mood Logged!')" value="Pretty Bad"><br>
-<input type="button" onclick="alert('Mood Logged!')" value="Couldn't feel worse"><br>
-        
+  <input type="radio" name="mood" value="10" checked> Really Great!<br>
+  <input type="radio" name="mood" value="9"> Great<br>
+  <input type="radio" name="mood" value="8"> Very Good<br>
+  <input type="radio" name="mood" value="7"> Good<br>
+  <input type="radio" name="mood" value="6"> Okay<br>
+  <input type="radio" name="mood" value="5"> So-so<br>
+  <input type="radio" name="mood" value="4"> Meh<br>
+  <input type="radio" name="mood" value="3"> Bad<br>
+  <input type="radio" name="mood" value="2"> Very Bad<br> 
+  <input type="radio" name="mood" value="1"> Couldn't Be Worse<br>
+  <br>    
+
+<label>Comments: </label><br><br>
+ <textarea rows="4" cols="50" name="comment" form="usrform">
+Enter text here...</textarea><br>
+       
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log Mood! 
         </button>

@@ -59,9 +59,22 @@ def show_mood_picker():
     """Return Page that shows mood picker for user to select"""
 
     return render_template("mood_picker.html") 
+
 #TODO: ADD 'ADD TRACKED MOOD' ROUTE
+#@app.route("/track-mood", methods=["POST"])
+#def pick_mood():
+    #mood = request.form.get("mood")
+#make form on mood picker into radio buttons so you don't have to add event listeners 
+    #new_mood = 
+        #db.session.add(new_mood)
+        #db.session.commit()
 
-
+# user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+#     mood_id = db.Column(db.Integer, db.ForeignKey('moods.mood_id'), nullable=False)
+#     datetime = db.Column(db.DateTime, nullable=False)
+#     comments = db.Column(db.String(1000), nullable = True)
+#     hours_slept = db.Column(db.Float, nullable=True)
+#     exercise_mins = db.Column(db.Integer, nullable=True)
 
 @app.route("/register", methods=["GET"])
 def register_form():
