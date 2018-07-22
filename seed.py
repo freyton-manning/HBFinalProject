@@ -14,7 +14,7 @@ def load_users():
     UserGoals.query.delete()
     User.query.delete()
     Goals.query.delete()
-    edith = User(user_id=1,
+    edith = User(user_id=0,
                 email="edith@edith.com",
                    password="password",
                    username = "edith",
@@ -80,7 +80,7 @@ def load_user_moods():
 
     User_Moods.query.delete()
     
-    user_mood_1= User_Moods(user_id=1, 
+    user_mood_1= User_Moods(user_id=0, 
         mood_id=5, 
         datetime='2018-01-01 12:00:00',
         comments= "Feeling average...",
@@ -88,15 +88,19 @@ def load_user_moods():
         exercise_mins=60)
 
     i = 1
-    while i < 11:
+    while i < 50:
         mood_id = random.randint(5,10)
-        day = i * 2
-        user_mood_rnd = User_Moods(user_id=1, 
+        hours_slept = random.randint(2,12)
+        exercise_pots = [0,30,60,60,90,180,0,30]
+        exercise_mins = random.choice(exercise_pots)
+        month = 1+ int(i/27)
+        day = i % 27 + 1
+        user_mood_rnd = User_Moods(user_id=0, 
         mood_id=mood_id, 
-        datetime='2018-01-' +str(day) + ' 12:00:00',
+        datetime='2018-' + str(month) +'-'+str(day) + ' 12:00:00',
         comments= "Feeling average...",
-        hours_slept=8,
-        exercise_mins=60)
+        hours_slept= hours_slept,
+        exercise_mins=exercise_mins)
         db.session.add(user_mood_rnd)
         i+=1
 

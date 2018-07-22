@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
    <meta charset="utf-8" />
-   <title>User Mood Data </title>
+   <title>User Exercise Data </title>
 
 
  
@@ -14,7 +14,7 @@
 
   
  
-<h1>User Mood Data</h1>
+<h1>User Exercise Data</h1>
 <!-- bar chart canvas element -->
 <canvas id="chart" width="900" height="400"></canvas>
  
@@ -27,8 +27,7 @@
               {% endfor %}],
    datasets : [
       {
-            fill: false,
-            //fillColor: "rgba(151,187,205,0.2)",
+            fillColor: "rgba(151,187,205,0.2)",
             strokeColor: "rgba(151,187,205,1)",
             pointColor: "rgba(151,187,205,1)",
             pointStrokeColor: "#fff",
@@ -36,19 +35,10 @@
             pointHighlightStroke: "rgba(151,187,205,1)",
             bezierCurve : false,
             data : [{% for item in results %}
-                      {{ item.mood_id }},
-                       //{{ item.exercise_mins}},
+                      //{{ item.mood_id }},
+                       {{ item.exercise_mins}},
                     {% endfor %}]
-      }, {
-        fill: false,
-        data: [{% for item in results %}
-                      {{ item.hours_slept}},
-                       //{{ item.exercise_mins}},
-                    {% endfor %}]
-      }
-
-
-      ]
+      }]
    }
  
     Chart.defaults.global.animationSteps = 50;
@@ -68,14 +58,14 @@
    max = 10
    // now draw line chart
    var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
+        //scaleOverride: true,
         scaleSteps: steps,
         scaleStepWidth: Math.ceil(max / steps),
-        //scaleStartValue: 0,
+        scaleStartValue: 0,
         suggestedMin: 0,
         scaleShowVerticalLines: true,
         scaleShowGridLines : true,
-        //barShowStroke : true,
+        barShowStroke : true,
         scaleShowLabels: true,
         bezierCurve: false,
  
@@ -83,10 +73,7 @@
  
  
 </script> 
-<br>
- <a href="/diff-chart"> Click here to see your differentials </a><br>
-  <a href="/sleep-chart"> Click here to see your sleep data </a><br>
-   <a href="/exercise-chart"> Click here to see your exercise data </a><br><br>
+ <a href="/diff-chart"> Click here to see your differentials </a>
 
 <table>
   <tr><td>Mood (1-10)</td><td>Date Logged</td><td>Comments</td><td>Hours Slept</td><td>Minutes of Exercise</td></tr>

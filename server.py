@@ -45,13 +45,13 @@ def chart():
 @app.route("/user-chart")
 def user_chart():
 
-    results = User_Moods.query.filter(User_Moods.user_id == 1)
+    results = User_Moods.query.filter(User_Moods.user_id == 0)
     return render_template('user_mood_chart.html', results=results)
 
 @app.route("/diff-chart")
 def diff_user_chart():
 
-    results = User_Moods.query.filter(User_Moods.user_id == 1)
+    results = User_Moods.query.filter(User_Moods.user_id == 0)
     prev = 5
     #chart_out = {}
     class chart_out:
@@ -68,6 +68,17 @@ def diff_user_chart():
         result_list.append(co)
     return render_template('diff_mood_chart.html', results=result_list)
 
+@app.route("/exercise-chart")
+def exercise_chart():
+
+    results = User_Moods.query.filter(User_Moods.user_id == 0)
+    return render_template('exercise_chart.html', results=results)
+
+@app.route("/sleep-chart")
+def sleep_chart():
+
+    results = User_Moods.query.filter(User_Moods.user_id == 0)
+    return render_template('hours_slept.html', results=results)
 
 #mood chart update
 #request.args.get
@@ -92,9 +103,9 @@ def show_mood_picker():
 def pick_mood():
     mood = request.form.get("mood")
     comment = request.form.get("comment")
-    success_string = "TA-DA! " + str(mood)
+    success_string = "TA-DA! " + str(mood) + " " + str(comment)
 
-    user_mood= User_Moods(user_id=1, 
+    user_mood= User_Moods(user_id=0, 
         mood_id=int(mood), 
         comments=str(comment))
 
