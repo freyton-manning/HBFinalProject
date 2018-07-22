@@ -42,6 +42,33 @@ def chart():
     values = [10,9,8,7,6,4,7,8]
     return render_template('standin_mood_chart.html', values=values, labels=labels)
 
+@app.route("/user-chart")
+def user_chart():
+
+    results = User_Moods.query.filter(User_Moods.user_id == 1)
+    return render_template('user_mood_chart.html', results=results)
+
+@app.route("/diff-chart")
+def diff_user_chart():
+
+    results = User_Moods.query.filter(User_Moods.user_id == 1)
+    prev = 5
+    #chart_out = {}
+    class chart_out:
+        def __init__(self):
+            self.mood_id = None
+            self.datetime = None
+    result_list = []        
+    for result in results:
+        co = chart_out()
+        co.datetime = result.datetime
+        co.mood_id = int(result.mood_id) - prev
+        #chart_out.result.datetime = result.mood_id - prev
+        prev = result.mood_id
+        result_list.append(co)
+    return render_template('diff_mood_chart.html', results=result_list)
+
+
 #mood chart update
 #request.args.get
 #todo: add view mood chart by zoom in feature
@@ -61,9 +88,21 @@ def show_mood_picker():
     return render_template("mood_picker.html") 
 
 #TODO: ADD 'ADD TRACKED MOOD' ROUTE
-#@app.route("/track-mood", methods=["POST"])
-#def pick_mood():
-    #mood = request.form.get("mood")
+@app.route("/track-mood", methods=["POST"])
+def pick_mood():
+    mood = request.form.get("mood")
+    comment = request.form.get("comment")
+    success_string = "TA-DA! " + str(mood)
+
+    user_mood= User_Moods(user_id=1, 
+        mood_id=int(mood), 
+        comments=str(comment))
+
+    db.session.add(user_mood)
+    db.session.commit()
+
+    return render_template("success_message.html", success_string=success_string)
+
 #make form on mood picker into radio buttons so you don't have to add event listeners 
     #new_mood = 
         #db.session.add(new_mood)

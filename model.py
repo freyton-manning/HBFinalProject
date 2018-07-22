@@ -1,5 +1,5 @@
 """Models and database functions for Ratings project."""
-
+import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -43,7 +43,7 @@ class User_Moods(db.Model):
     # realized this wasn't added so updated - need a way to link mood id to the user
     # otherwise what are they actually logging? 
     mood_id = db.Column(db.Integer, db.ForeignKey('moods.mood_id'), nullable=False)
-    datetime = db.Column(db.DateTime, nullable=False)
+    datetime = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     comments = db.Column(db.String(1000), nullable = True)
     hours_slept = db.Column(db.Float, nullable=True)
     exercise_mins = db.Column(db.Integer, nullable=True)
@@ -54,7 +54,7 @@ class Moods(db.Model):
     """ Table of available Moods and mood information"""
     __tablename__ = "moods"
 
-    mood_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    mood_id = db.Column(db.Integer, autoincrement=False, primary_key=True)
     mood_word = db.Column(db.String(25), nullable=False)
     mood_num = db.Column(db.Integer, nullable= False)
     #Not quite sure what to do with Mood type rn, so keeping it nullable 

@@ -1,6 +1,7 @@
 """Utility file to seed project database"""
 
 import datetime
+import random
 from sqlalchemy import func
 
 from model import User, User_Moods, Moods, UserGoals, Goals, Hashtag, Activities, UserDataHashtags, connect_to_db, db
@@ -13,7 +14,8 @@ def load_users():
     UserGoals.query.delete()
     User.query.delete()
     Goals.query.delete()
-    edith = User(email="edith@edith.com",
+    edith = User(user_id=1,
+                email="edith@edith.com",
                    password="password",
                    username = "edith",
                    reminders_on=True)
@@ -46,16 +48,19 @@ def load_users():
     """Load mood data into db"""
 def load_moods(): 
 
-    mood_10 = Moods(mood_word = "Really Great", mood_num=10)
-    mood_9 = Moods(mood_word = "Great", mood_num=9)
-    mood_8 = Moods(mood_word = "Very Good", mood_num=8)
-    mood_7 = Moods(mood_word = "Good", mood_num=7)
-    mood_6 = Moods(mood_word = "Okay", mood_num=6)
-    mood_5 = Moods(mood_word = "So-So", mood_num=5)
-    mood_4 = Moods(mood_word = "Meh", mood_num=4)
-    mood_3 = Moods(mood_word = "Bad", mood_num=3)
-    mood_2 = Moods(mood_word = "Very Bad", mood_num=2)
-    mood_1 = Moods(mood_word = "Couldn't Be Worse", mood_num=1)
+    Moods.query.delete()
+    
+
+    mood_10 = Moods(mood_word = "Really Great", mood_num=10, mood_id=10)
+    mood_9 = Moods(mood_word = "Great", mood_num=9, mood_id=9)
+    mood_8 = Moods(mood_word = "Very Good", mood_num=8, mood_id=8)
+    mood_7 = Moods(mood_word = "Good", mood_num=7, mood_id=7)
+    mood_6 = Moods(mood_word = "Okay", mood_num=6, mood_id=6)
+    mood_5 = Moods(mood_word = "So-So", mood_num=5, mood_id=5)
+    mood_4 = Moods(mood_word = "Meh", mood_num=4, mood_id=4)
+    mood_3 = Moods(mood_word = "Bad", mood_num=3, mood_id=3)
+    mood_2 = Moods(mood_word = "Very Bad", mood_num=2, mood_id=2)
+    mood_1 = Moods(mood_word = "Couldn't Be Worse", mood_num=1, mood_id=1)
 
     db.session.add(mood_10)
     db.session.add(mood_9)
@@ -71,7 +76,43 @@ def load_moods():
 
 
 #TODO: 
-# def load_user_moods(): 
+def load_user_moods(): 
+
+    User_Moods.query.delete()
+    
+    user_mood_1= User_Moods(user_id=1, 
+        mood_id=5, 
+        datetime='2018-01-01 12:00:00',
+        comments= "Feeling average...",
+        hours_slept=8,
+        exercise_mins=60)
+
+    i = 1
+    while i < 11:
+        mood_id = random.randint(5,10)
+        day = i * 2
+        user_mood_rnd = User_Moods(user_id=1, 
+        mood_id=mood_id, 
+        datetime='2018-01-' +str(day) + ' 12:00:00',
+        comments= "Feeling average...",
+        hours_slept=8,
+        exercise_mins=60)
+        db.session.add(user_mood_rnd)
+        i+=1
+
+    db.session.add(user_mood_1)
+    db.session.commit()
+
+
+# record_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+#     mood_id = db.Column(db.Integer, db.ForeignKey('moods.mood_id'), nullable=False)
+#     datetime = db.Column(db.DateTime, nullable=False)
+#     comments = db.Column(db.String(1000), nullable = True)
+#     hours_slept = db.Column(db.Float, nullable=True)
+#     exercise_mins = db.Column(db.Integer, nullable=True)
+
+#     hashtags = db.relationship("Hashtag", secondary = "user_data_hashtags")
 
 
 if __name__ == "__main__":
@@ -81,6 +122,7 @@ if __name__ == "__main__":
     
     load_users()
     load_moods()
+    load_user_moods()
     
 
     
