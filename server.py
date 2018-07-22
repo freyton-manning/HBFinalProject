@@ -45,7 +45,7 @@ def chart():
 @app.route("/user-chart")
 def user_chart():
 
-    results = User_Moods.query.filter(User_Moods.user_id == 0)
+    results = User_Moods.query.filter(User_Moods.user_id == 0, User_Moods.hours_slept.isnot(None))
     return render_template('user_mood_chart.html', results=results)
 
 @app.route("/diff-chart")
@@ -70,14 +70,16 @@ def diff_user_chart():
 
 @app.route("/exercise-chart")
 def exercise_chart():
-
-    results = User_Moods.query.filter(User_Moods.user_id == 0)
+    #uid = webapp2.request.get('uid')
+    #if uid == '':
+        #uid = 0
+    results = User_Moods.query.filter(User_Moods.user_id == 0, User_Moods.exercise_mins.isnot(None))
     return render_template('exercise_chart.html', results=results)
 
 @app.route("/sleep-chart")
 def sleep_chart():
 
-    results = User_Moods.query.filter(User_Moods.user_id == 0)
+    results = User_Moods.query.filter(User_Moods.user_id == 0, User_Moods.hours_slept.isnot(None))
     return render_template('hours_slept.html', results=results)
 
 #mood chart update
