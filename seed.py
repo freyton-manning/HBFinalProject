@@ -89,8 +89,15 @@ def load_user_moods():
 
     i = 1
     while i < 50:
-        mood_id = random.randint(5,10)
-        hours_slept = random.randint(2,12)
+        #never sad 
+        #mood_id = random.randint(5,10)
+        #high variation 
+        #mood_pots = [1,1,1,2,2,2,3,4,6,7,8,9,9,10,10,10,10,10]
+        #mood_id = random.choice(mood_pots)
+        #mostly happy
+        mood_pots = [1,2,3,4,5, 5,5, 5, 5, 6,6,6, 6,7,8,9,9,10,10,10,10,10]
+        mood_id = random.choice(mood_pots)
+        hours_slept = random.randint(0,2)+mood_id
         exercise_pots = [0,30,60,60,90,180,0,30]
         exercise_mins = random.choice(exercise_pots)
         month = 1+ int(i/27)

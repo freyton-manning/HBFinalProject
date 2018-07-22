@@ -16,7 +16,7 @@
  
 <h1>User Mood Data</h1>
 <!-- bar chart canvas element -->
-<canvas id="chart" width="900" height="400"></canvas>
+<canvas id="chart" width="900" height="500"></canvas>
  
 <script>
  
@@ -27,20 +27,25 @@
               {% endfor %}],
    datasets : [
       {
+            label: "Mood",
             fill: false,
-            //fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
+            fillColor: "rgba(255,0,0,0.2)",
+            strokeColor: "rgba(255,0,0,.4)",
+            pointColor: "rgba(255,0,0,.4)",
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
+            pointHighlightStroke: "rgba(151,187,205,.4)",
             bezierCurve : false,
             data : [{% for item in results %}
                       {{ item.mood_id }},
                        //{{ item.exercise_mins}},
                     {% endfor %}]
       }, {
+        label: "Hours Slept",
         fill: false,
+        fillColor: "rgba(0,0,255,0.2)",
+            strokeColor: "rgba(0,0,255,.4)",
+            pointColor: "rgba(0,0,255,.4)",
         data: [{% for item in results %}
                       {{ item.hours_slept}},
                        //{{ item.exercise_mins}},
@@ -66,6 +71,14 @@
  
    steps = 10
    max = 10
+   //options = {
+        //legend: {
+            //display: true,
+            //labels: {
+                //fontColor: 'rgb(255, 99, 132)'
+           // }
+       // }
+
    // now draw line chart
    var LineChartDemo = new Chart(mychart).Line(barData, {
         scaleOverride: true,
@@ -78,6 +91,7 @@
         //barShowStroke : true,
         scaleShowLabels: true,
         bezierCurve: false,
+        //options:options,
  
    });
  
