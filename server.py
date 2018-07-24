@@ -105,11 +105,14 @@ def show_mood_picker():
 def pick_mood():
     mood = request.form.get("mood")
     comment = request.form.get("comment")
-    success_string = "TA-DA! " + str(mood) + " " + str(comment)
+    hours_slept = request.form.get("hrslept")
+    exercise_mins = request.form.get("exmins")
+    hashtag = request.form.get("hashtag")
+    success_string = "TA-DA! " + str(mood) + " " + str(comment) + str(hours_slept) + str(exercise_mins)
 
     user_mood= User_Moods(user_id=0, 
         mood_id=int(mood), 
-        comments=str(comment))
+        comments=str(comment), hours_slept=int(hours_slept), exercise_mins=int(exercise_mins), hashtags=str(hashtag))
 
     db.session.add(user_mood)
     db.session.commit()
@@ -200,4 +203,6 @@ if __name__ == "__main__":
     # Use the DebugToolbar
     #DebugToolbarExtension(app)
 
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    #app.run(debug=True, port=5000, host='0.0.0.0')
+    app.run(debug=True, port=5000, host='127.0.0.1')
+
