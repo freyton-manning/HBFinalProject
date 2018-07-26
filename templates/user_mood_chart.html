@@ -110,6 +110,10 @@
      <td>{{ result.comments }}</td>
      <td>{{ result.hours_slept }}</td>
       <td>{{ result.exercise_mins }}</td>
+      <td> {% for hashtag in result.hashtags %}
+      {{ hashtag.text }}
+      {% endfor %}
+    </td>
   </tr>
     {% endfor %}
 </table>
