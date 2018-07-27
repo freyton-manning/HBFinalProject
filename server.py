@@ -108,6 +108,7 @@ def pick_mood():
     hours_slept = request.form.get("hrslept")
     exercise_mins = request.form.get("exmins")
     hashtag = request.form.get("hashtag")
+
     success_string = "TA-DA! " + str(mood) + " " + str(comment) + str(hours_slept) + str(exercise_mins) + str(hashtag)
 
     hashtag_obj = Hashtag.query.filter_by(text=hashtag).first()
@@ -120,6 +121,7 @@ def pick_mood():
         exercise_mins=int(exercise_mins),
         hours_slept=int(hours_slept), 
         hashtags=[hashtag_obj])
+
 
     db.session.add(user_mood)
     db.session.add(hashtag_obj)
@@ -211,4 +213,6 @@ if __name__ == "__main__":
     # Use the DebugToolbar
     #DebugToolbarExtension(app)
 
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    #app.run(debug=True, port=5000, host='0.0.0.0')
+    app.run(debug=True, port=5000, host='127.0.0.1')
+
