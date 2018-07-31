@@ -45,6 +45,8 @@ def chart():
 @app.route("/user-chart")
 def user_chart():
 
+    # needs to be == session[user_id]
+
     results = User_Moods.query.filter(User_Moods.user_id == 0, User_Moods.hours_slept.isnot(None))
     return render_template('user_mood_chart.html', results=results)
 
@@ -98,7 +100,9 @@ def show_goals():
 def show_mood_picker():
     """Return Page that shows mood picker for user to select"""
 
-    return render_template("mood_picker.html") 
+    user = User.query.filter(User.user_id == session["user_id"]).first()
+    return render_template("mood_picker.html", user=user)
+
 
 #TODO: ADD 'ADD TRACKED MOOD' ROUTE
 @app.route("/track-mood", methods=["POST"])
@@ -114,8 +118,9 @@ def pick_mood():
     hashtag_obj = Hashtag.query.filter_by(text=hashtag).first()
     if hashtag_obj is None:
         hashtag_obj = Hashtag(text=hashtag)
-
-    user_mood= User_Moods(user_id=0, 
+#todo: make sure they are loged in 
+#flask "before request" - make flask say before every request, are they logged in. 
+    user_mood= User_Moods(user_id=session['user_id'], 
         mood_id=int(mood), 
         comments=str(comment),
         exercise_mins=int(exercise_mins),
@@ -163,7 +168,10 @@ def register_process():
         new_user = User(email=email, password=password, username=username, reminders_on=reminders_on)
         db.session.add(new_user)
         db.session.commit()
-    return redirect("/")
+    flash("You are now registered, time to login!")
+    return redirect("/login")
+
+    #fix so the user is logged in 
 
 
 @app.route("/login", methods=["GET"])
@@ -191,7 +199,8 @@ def process_login():
 
     if user is not None:
         if user.password == password:
-            session["user_name"] = user.user_id
+            session["user_id"] = user.user_id
+            session["username"] = user.username
             flash("Logged in")
             return redirect("/")
         else: 
@@ -201,7 +210,10 @@ def process_login():
         flash("Incorrect email, please register")
         return redirect ("/register")        
 
-
+@app.route("/logout", methods=["GET"])
+def process_logout():
+    session.clear()
+    return redirect ("/")
 
 
 if __name__ == "__main__":
