@@ -96,6 +96,8 @@ def load_user_moods():
         #mood_id = random.choice(mood_pots)
         #mostly happy
         mood_pots = [1,2,3,4,5, 5,5, 5, 5, 6,6,6, 6,7,8,9,9,10,10,10,10,10]
+        comments_pots = ["Feeling Average", "Positive Vibes", "Need Caffeine", "Sunny Day!", "Went for a walk", "Good times with friends", "Travel Fun", "Gloomy", "Too much caffeine", "Great Day", "Worked Overtime"]
+        comments = random.choice(comments_pots)
         mood_id = random.choice(mood_pots)
         hours_slept = random.randint(0,2)+mood_id
         exercise_pots = [0,30,60,60,90,180,0,30]
@@ -105,7 +107,8 @@ def load_user_moods():
         user_mood_rnd = User_Moods(user_id=0, 
         mood_id=mood_id, 
         datetime='2018-' + str(month) +'-'+str(day) + ' 12:00:00',
-        comments= "Feeling average...",
+        comments=comments_pots
+        #comments= "Feeling average...",
         hours_slept= hours_slept,
         exercise_mins=exercise_mins)
         db.session.add(user_mood_rnd)
