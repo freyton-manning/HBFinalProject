@@ -87,6 +87,14 @@ def load_user_moods():
         hours_slept=8,
         exercise_mins=60)
 
+    db.session.add(user_mood_1)
+    db.session.commit()
+    
+    mood_pots = [1,2,3,4,5, 5,5, 5, 5, 6,6,6, 6,7,8,9,9,10,10,10,10,10]
+    comments_pots = ["Feeling Average", "Positive Vibes", "Need Caffeine", "Sunny Day!", "Went for a walk", "Good times with friends", "Travel Fun", "Gloomy", "Too much caffeine", "Great Day", "Worked Overtime", "Cooked Dinner", "Beach Day", "PTO, Woo!", "Cranky today", ]
+    hashtag_pots = [ "#Blessed", "#StillBlessed", "#RainyDay", "#BailedOnPlans", "#LegDay", "#WhenisFriYAY", "#Hungry" ,"#Bored", "#ItsHandled", "#TheStruggleIsReal", "#GoodTimes", "#WFH", "#Motivated", "#MoreSleepPlz", "#CoffeeBreaks", "#Glad2BeHere"]
+    exercise_pots = [0,30,60,60,90,180,0,30]
+    
     i = 1
     while i < 50:
         #never sad 
@@ -95,28 +103,61 @@ def load_user_moods():
         #mood_pots = [1,1,1,2,2,2,3,4,6,7,8,9,9,10,10,10,10,10]
         #mood_id = random.choice(mood_pots)
         #mostly happy
-        mood_pots = [1,2,3,4,5, 5,5, 5, 5, 6,6,6, 6,7,8,9,9,10,10,10,10,10]
-        comments_pots = ["Feeling Average", "Positive Vibes", "Need Caffeine", "Sunny Day!", "Went for a walk", "Good times with friends", "Travel Fun", "Gloomy", "Too much caffeine", "Great Day", "Worked Overtime"]
         comments = random.choice(comments_pots)
         mood_id = random.choice(mood_pots)
         hours_slept = random.randint(0,2)+mood_id
-        exercise_pots = [0,30,60,60,90,180,0,30]
         exercise_mins = random.choice(exercise_pots)
         month = 1+ int(i/27)
         day = i % 27 + 1
+        
+        # query for hashtag by text field
+        # if it's NOT in the hashtag table, add it
+        
+       
+        hashtag_text = random.choice(hashtag_pots)
+
+        hashtag = Hashtag.query.filter(Hashtag.text == hashtag_text).first()
+        if hashtag is None:
+            hashtag = Hashtag(text=hashtag_text)
+            db.session.add(hashtag)
+            db.session.commit()
+
         user_mood_rnd = User_Moods(user_id=0, 
         mood_id=mood_id, 
         datetime='2018-' + str(month) +'-'+str(day) + ' 12:00:00',
-        comments=comments_pots
+        comments=comments,
         #comments= "Feeling average...",
         hours_slept= hours_slept,
         exercise_mins=exercise_mins)
+
         db.session.add(user_mood_rnd)
+        db.session.commit()
+
+        userdatahashtag = UserDataHashtags(hashtag_id=hashtag.hashtag_id, record_id=user_mood_rnd.record_id)
+        
+        db.session.add(userdatahashtag)
+        db.session.commit()
+
         i+=1
 
-    db.session.add(user_mood_1)
-    db.session.commit()
 
+# def load_user_hashtags():
+#     Hashtag.query.delete()
+
+#     i = 1 
+#     while i < 50:
+#         hashtag_pots = [ "#Blessed", "#StillBlessed", "#LegDay" "#WhenisFriYAY", "#Hungry" "#Bored", "#ItsHandled", "#TheStruggleIsReal", "#GoodTimes", "#WFH", "#Motivated", "#MoreSleepPlz" "#CoffeeBreaks", "#Glad2BeHere"]
+#         hashtag_rnd = Hashtag(text=random.choice(hashtatg_pots))
+#         db.session.add(hashtag_rnd)
+
+#         db.session(commit)
+
+#class Hashtag(db.Model):
+    """ Table of all hashtags with an id, for searching later"""
+    #__tablename__ = "hashtags"
+
+    #hashtag_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    #text = db.Column(db.String(25), nullable=False)
 
 # record_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 #     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
