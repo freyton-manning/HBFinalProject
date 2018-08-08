@@ -2,6 +2,16 @@
 
 {% block content %}
 
+<!-- It's container-fluid so it spans the entire page. -->
+  <div class="container-fluid">
+    <!-- Begin centered main text -->
+      <div class="row align-items-center">
+        <section class="col-6 mx-auto" id="splash">
+          
+          <br>
+         
+        
+
     <form class="form-signin" action="/register" method="POST">
 
         <h2> Please Create An Account</h2>
@@ -28,9 +38,11 @@
   <input type="checkbox" name="reminders_on" checked> Yes 
   <input type="checkbox" name="reminders_on"> No<br>
         <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Create My Account!
         </button>
 
     </form>
+    </section>
+      </div>
 
 {% endblock %}

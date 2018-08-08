@@ -68,7 +68,7 @@ def diff_user_chart():
         #chart_out.result.datetime = result.mood_id - prev
         prev = result.mood_id
         result_list.append(co)
-    return render_template('diff_mood_chart.html', results=result_list)
+    return render_template('diff_mood_chart.html', results=results)
 
 @app.route("/exercise-chart")
 def exercise_chart():

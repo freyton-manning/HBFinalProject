@@ -155,21 +155,7 @@
 
 
 
-<table>
-  <tr><td>Mood (1-10)</td><td>Date Logged</td><td>Comments</td><td>Hours Slept</td><td>Minutes of Exercise</td><td>Hashtag of the Day </td></tr>
-  {% for result in results %}
-   <tr> <td>{{ result.mood_id }}</td>
-    <td>{{ result.datetime }}</td>
-     <td>{{ result.comments }}</td>
-     <td>{{ result.hours_slept }}</td>
-      <td>{{ result.exercise_mins }}</td>
-      <td> {% for hashtag in result.hashtags %}
-      {{ hashtag.text }}
-      {% endfor %}
-    </td>
-  </tr>
-    {% endfor %}
-</table>
+
  </div>
 
 

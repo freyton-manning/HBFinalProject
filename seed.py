@@ -17,7 +17,7 @@ def load_users():
     edith = User(user_id=0,
                 email="edith@edith.com",
                    password="password",
-                   username = "edith",
+                   username = "Edith",
                    reminders_on=True)
     #user object has user_goals relationship
     #user_goals has relationship to goals and to users
